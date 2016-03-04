@@ -42,6 +42,15 @@ class Bitcoind implements BitcoindInterface
     /**
      * @inheritdoc
      */
+    public function evictfrommempool($txid)
+    {
+        $response = $this->client->execute('evictfrommempool', array($txid));
+        return $response->result;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function addmultisigaddress($nrequired, $keys, $account = null)
     {
         $response = $this->client->execute('addmultisigaddress', array($keys, $account));
